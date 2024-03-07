@@ -9,3 +9,17 @@ services:
     ports:
       - 8080:8080
     command: bash -c "cd ./src && uvicorn main:app --reload --host 0.0.0.0 --port 8080"
+
+  db:
+    container_name: postgres
+    image: postgres:15.3
+    volumes:
+      - ./app:/app
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_ROOT_PASSWORD=root
+    
